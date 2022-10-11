@@ -231,7 +231,7 @@ func (c *consulRegistry) Register(s *registry.Service, opts ...registry.Register
 
 	// add raw tag
 	var tags = make([]string, 0)
-	if tag, ok := options.Context.Value("consul_raw_tag").(string); ok {
+	if tag, ok := c.opts.Context.Value("consul_raw_tag").(string); ok {
 		tags = append(tags, tag)
 	}
 	// encode the tags
