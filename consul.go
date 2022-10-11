@@ -235,7 +235,7 @@ func (c *consulRegistry) Register(s *registry.Service, opts ...registry.Register
 		tags = append(tags, tag)
 	}
 	// encode the tags
-	tags = encodeMetadata(node.Metadata)
+	tags = append(tags, encodeMetadata(node.Metadata)...)
 	tags = append(tags, encodeEndpoints(s.Endpoints)...)
 	tags = append(tags, encodeVersion(s.Version)...)
 	var check *consul.AgentServiceCheck
