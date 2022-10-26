@@ -87,3 +87,15 @@ func RawTag(tag string) registry.Option {
 		o.Context = context.WithValue(o.Context, "consul_raw_tag", tag)
 	}
 }
+
+func RawMetaData(meta map[string]string) registry.Option {
+	return func(o *registry.Options) {
+		if meta == nil || len(meta) == 0 {
+			return
+		}
+		if o.Context == nil {
+			o.Context = context.Background()
+		}
+		o.Context = context.WithValue(o.Context, "consul_raw_metadata", meta)
+	}
+}

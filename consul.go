@@ -228,6 +228,12 @@ func (c *consulRegistry) Register(s *registry.Service, opts ...registry.Register
 			}
 		}
 	}
+	// add raw metadata
+	if meta, ok := c.opts.Context.Value("consul_raw_metadata").(map[string]string); ok {
+		for k, v := range meta {
+			node.Metadata[k] = v
+		}
+	}
 
 	// add raw tag
 	var tags = make([]string, 0)
